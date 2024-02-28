@@ -8,8 +8,8 @@ define behavior for z_c_travel_a06 alias TravelProcessor
   use update;
   use delete;
 
-  use action acceptTravel;
-  use action rejectTravel;
+//  use action acceptTravel;
+//  use action rejectTravel;
   use action createTravelByTemplate;
 
   use association _Booking { create; }

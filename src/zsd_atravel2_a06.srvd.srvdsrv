@@ -1,8 +1,8 @@
 @EndUserText.label: 'Travel Approval'
 define service Zsd_atravel2_a06 {
-  expose z_c_travel_a06  as Travel;
-  expose z_c_booking_a06 as Booking;
-  expose /DMO/I_Customer as Passenger;
-  expose /DMO/I_Agency   as Agency;
-  expose I_Currency      as Currency;
+  expose Z_C_ATRAVEL_A06  as Travel;
+  expose z_c_abooking_a06 as Booking;
+  expose /DMO/I_Customer  as Passenger;
+  expose /DMO/I_Agency    as Agency;
+  expose I_Currency       as Currency;
 }
