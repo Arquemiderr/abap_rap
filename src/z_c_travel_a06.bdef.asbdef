@@ -18,7 +18,7 @@ define behavior for z_c_travel_a06 alias TravelProcessor
 define behavior for z_c_booking_a06 alias BookingProcessor
 {
   use update;
-  //use delete;
+  use delete;
 
   use association _Travel;
   use association _BookSupplement { create; }
@@ -27,7 +27,7 @@ define behavior for z_c_booking_a06 alias BookingProcessor
 define behavior for Z_C_BOOKSUPPL_A06 alias SupplementProcessor
 {
   use update;
-  //use delete;
+  use delete;
 
   use association _Travel;
   use association _Booking;

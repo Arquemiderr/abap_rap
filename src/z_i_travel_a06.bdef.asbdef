@@ -4,6 +4,7 @@ managed;
 define behavior for Z_I_TRAVEL_A06 alias Travel
 implementation in class zbp_i_travel_a06 unique
 persistent table ztravel_a06
+with additional save
 lock master
 authorization master ( instance )
 etag master last_changed_at
@@ -11,7 +12,7 @@ etag master last_changed_at
   //administrative fields:read only
   field ( readonly ) last_changed_at, last_changed_by, created_at, created_by;
   //mandatory fields that are required to create a travel
-  field ( mandatory ) agency_id, overall_status, booking_fee, currency_code;
+  field ( mandatory : create ) travel_id, agency_id, overall_status, booking_fee, currency_code;
   //dynamic field control
   field ( features : instance ) travel_id, overall_status;
 
@@ -20,9 +21,9 @@ etag master last_changed_at
   delete;
 
   //Validations
-  validation validateCustomer on save { field customer_id; }
-  validation validateDates on save { field begin_date, end_date; }
-  validation validateStatus on save { field overall_status; }
+  validation validateCustomer on save { create; field customer_id; }
+  validation validateDates on save { create; field begin_date, end_date; }
+  validation validateStatus on save { create; field overall_status; }
 
   //action
   action ( features : instance ) acceptTravel result [1] $self;
@@ -30,7 +31,7 @@ etag master last_changed_at
 
   action createTravelByTemplate result [1] $self;
 
-  association _Booking { create; }
+  association _Booking { create (features : instance); }
 
   mapping
        for ztravel_a06 corresponding;
@@ -45,17 +46,18 @@ etag master last_changed_at
   {
     //static fields control
     field ( readonly ) travel_id;
-    field ( mandatory ) carrier_id, connection_id, flight_date, booking_status;
+    field ( mandatory :create ) booking_id, carrier_id, connection_id, flight_date, booking_status;
+
     update;
     delete;
     //validations
-    validation validateStatus on save { field booking_status; }
+    validation validateStatus on save { create; field booking_status; }
 
     //determinations
     determination calcularTotalFlightPrice on modify { field flight_price, currency_code; }
 
     association _Travel;
-    association _BookSupplement { create; }
+    association _BookSupplement { create (features : instance); }
 
     mapping
          for zbooking_a06 corresponding;
@@ -70,7 +72,7 @@ etag master last_changed_at
     {
 
       field ( readonly ) travel_id, booking_id;
-      field ( mandatory ) supplement_id, price;
+      field ( mandatory : create ) supplement_id, price;
       update;
       delete;
 
