@@ -65,5 +65,8 @@ annotate view z_c_travel_a06 with
   Description;
   @UI.hidden: true
   LastChangedAt;
-
+  @UI: { 
+  lineItem: [{ position: 60, importance: #HIGH }]}
+  @EndUserText.label: 'Discount 10%'
+  DiscountPrice;
 }
