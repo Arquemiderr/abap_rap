@@ -5,7 +5,7 @@
                       title :{ type: #STANDARD,
                                 label: 'Employees',
                                 value: 'EmployeeName' } }}
-annotate view z_c_hcm_master_a06 with
+annotate view Z_C_EMPLOYEE_A06 with
 {
   @UI.facet: [{ id : 'Employees',
                 purpose: #STANDARD,
